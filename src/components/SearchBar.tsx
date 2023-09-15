@@ -3,7 +3,7 @@ import React from "react";
 const SearchBar: React.FC = () => {
   return (
     <div className="mb-4 flex border border-gray-400 rounded-md m-2">
-      <div className="w-8 flex items-center" placeholder="">
+      <div className="w-8 flex items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
