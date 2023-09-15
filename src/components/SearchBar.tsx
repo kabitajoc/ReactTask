@@ -1,6 +1,7 @@
 import React from "react";
 
 const SearchBar: React.FC = () => {
+  const [input, setInput] = usestate("");
   return (
     <div className="mb-4 flex border border-gray-400 rounded-md m-2">
       <div className="w-8 flex items-center">
@@ -24,6 +25,8 @@ const SearchBar: React.FC = () => {
         className="w-full p-2 outline-none"
         type="text"
         placeholder="Search Country"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
       />
     </div>
   );
