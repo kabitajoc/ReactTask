@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 const countries = [
   "United States",
   "Canada",
@@ -9,14 +10,14 @@ const countries = [
 ];
 
 const SelectCountry = () => {
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
 
-  const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCountry(event.target.value);
   };
 
   return (
-    <div className=" flex-col">
+    <div className="flex-col">
       <label htmlFor="countrySelect" className="font-bold">
         Select country
       </label>
@@ -24,7 +25,7 @@ const SelectCountry = () => {
         id="countrySelect"
         value={selectedCountry}
         onChange={handleCountryChange}
-        className=" border border-gray-400 rounded-md m-2 p-1 "
+        className="border border-gray-400 rounded-md m-2 p-1"
       >
         <option value="">Select a country</option>
         {countries.map((country, index) => (

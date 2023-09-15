@@ -1,9 +1,9 @@
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar: React.FC = () => {
   return (
-    <div className=" mb-4 flex border border-gray-400 rounded-md m-2  ">
-      <div className=" w-8 flex items-center">
+    <div className="mb-4 flex border border-gray-400 rounded-md m-2">
+      <div className="w-8 flex items-center" placeholder="">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -11,10 +11,10 @@ const SearchBar = () => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-search"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="feather feather-search"
         >
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -23,7 +23,7 @@ const SearchBar = () => {
       <input
         className="w-full p-2 outline-none"
         type="text"
-        placeholder="Search Country "
+        placeholder="Search Country"
       />
     </div>
   );
