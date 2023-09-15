@@ -11,17 +11,20 @@ const countries = [
 const SelectCountry = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
 
-  const handleCountryChange = (event) => {
+  const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedCountry(event.target.value);
   };
 
   return (
     <div className=" flex-col">
-      <label htmlFor="countrySelect">Select country</label>
+      <label htmlFor="countrySelect" className="font-bold">
+        Select country
+      </label>
       <select
         id="countrySelect"
         value={selectedCountry}
         onChange={handleCountryChange}
+        className=" border border-gray-400 rounded-md m-2 p-1 "
       >
         <option value="">Select a country</option>
         {countries.map((country, index) => (

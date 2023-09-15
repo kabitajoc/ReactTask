@@ -7,11 +7,15 @@ import Table from "./components/Table";
 function App() {
   return (
     <>
-      <div className="display-flex">
-        <SearchBar />
-        <SelectCountry />
-        <DateRangePicker />
-        <SortbyVaccination />
+      <div className="flex-col m-auto">
+        <div className="flex justify-between">
+          <SearchBar />
+          <SelectCountry />
+        </div>
+        <div className="flex justify-between">
+          <DateRangePicker />
+          <SortbyVaccination />
+        </div>
         <Table />
       </div>
     </>

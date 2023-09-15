@@ -13,23 +13,24 @@ const DateRangePicker: React.FC = () => {
   };
 
   return (
-    <div className="flex space-x-4">
-      <p>Date Range</p>
-      <div className=" flex">
-        <label className="block text-gray-600">From:</label>
+    <div className="flex-col space-x-4">
+      <h5 className=" mb-4 font-bold">Date Range</h5>
+      <div className=" flex mb-4 ">
+        <label className="block text-gray-600 font-medium mr-2 ">From: </label>
         <input
           type="date"
-          className="border border-gray-400 rounded-md p-2"
+          className="border border-gray-400 rounded-md p-2 h-8 "
           value={fromDate}
           onChange={handleFromDateChange}
           placeholder="From"
         />
-      </div>
-      <div>
-        <label className="block text-gray-600">To:</label>
+
+        <label className="block text-gray-600 mr-2 font-medium ml-4">
+          To:{" "}
+        </label>
         <input
           type="date"
-          className="border border-gray-400 rounded-md p-2"
+          className="border border-gray-400 rounded-md p-2 h-8"
           value={toDate}
           onChange={handleToDateChange}
           placeholder="To"
