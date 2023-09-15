@@ -37,7 +37,7 @@ function TableData() {
             {item.country}
           </div>
           <div className="flex-1 p-2 border border-gray-300">
-            {item[index].data[index].date}
+            {/* {item[index].data[index].date} */}
           </div>
           <div className="flex-1 p-2 border border-gray-300">
             {item.vaccinesAdministered}
@@ -47,6 +47,14 @@ function TableData() {
           </div>
         </div>
       ))}
+      <div className="flex justify-end">
+        <span>Per Page </span>
+        <select>
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+        </select>
+      </div>
     </div>
   );
 }

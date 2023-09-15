@@ -11,9 +11,8 @@ function App() {
     <>
       <div className="flex-col m-auto">
         <div className="flex justify-between">
-        <SearchBar />
+          <SearchBar />
           <SelectCountry />
-          
         </div>
         <div className="flex justify-between">
           <DateRangePicker />
