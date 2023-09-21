@@ -24,11 +24,17 @@ const aggregateData = (data: CountryData[]): CountryData[] => {
 };
 
 export const useFetchData = () => {
-  const fetchData = async (): Promise<CountryData[]> => {
+  const fetchData = async (): Promise<{
+    aggregated: CountryData[];
+    raw: CountryData[];
+  }> => {
     const res = await axios.get(
       'https://gist.githubusercontent.com/DikenMaharjan/95754f5efce430c608c7996602b63041/raw/7b1519fa02751628fab5a32275a4729ec7d11c4e/vaccinations.json',
     );
-    return aggregateData(res.data);
+    return {
+      aggregated: aggregateData(res.data),
+      raw: res.data,
+    };
   };
 
   return useQuery('vaccinationData', fetchData);

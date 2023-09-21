@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import { useFetchData } from "./hooks/useFetchData";
 import Table from "./components/Table";
 import Filters from "./components/Filters";
-import { sortData, filterData } from "./utils";
+import DateRangeTable from "./components/DateRangeTable";
+import { filterData, sortData } from "./utils";
+import { SortableKeys } from "./utils/sortData";
 
 const App: React.FC = () => {
   const { data, isLoading, isError } = useFetchData();
+
+  const aggregatedData = data?.aggregated || [];
+  const rawData = data?.raw || [];
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [sortKey, setSortKey] = useState<string>("country");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [confirmedSearchTerm, setConfirmedSearchTerm] = useState<string>("");
+
+  // Date range selection.
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,14 +74,41 @@ const App: React.FC = () => {
     );
   }
 
-  let processedData = sortData(data, sortKey as any, sortOrder);
+  let processedData = startDate || endDate ? rawData : aggregatedData;
+
+  if (selectedCountry || startDate || endDate) {
+    processedData = filterData(
+      processedData,
+      selectedCountry,
+      startDate,
+      endDate
+    );
+  }
 
   if (selectedCountry) {
-    processedData = filterData(processedData, selectedCountry);
+    processedData = filterData(
+      processedData,
+      selectedCountry,
+      startDate,
+      endDate
+    );
   }
 
   if (confirmedSearchTerm) {
-    processedData = filterData(processedData, confirmedSearchTerm);
+    processedData = filterData(
+      processedData,
+      confirmedSearchTerm,
+      startDate,
+      endDate
+    );
+  }
+
+  const validKeys: SortableKeys[] = ["country", "iso_code"];
+
+  if (validKeys.includes(sortKey as SortableKeys)) {
+    processedData = sortData(processedData, sortKey as SortableKeys, sortOrder);
+  } else {
+    console.warn(`Invalid sort key: ${sortKey}`);
   }
 
   // Pagination
@@ -91,8 +127,14 @@ const App: React.FC = () => {
         setConfirmedSearchTerm={setConfirmedSearchTerm}
         setSortKey={setSortKey}
         setSortOrder={setSortOrder}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
       />
-      <Table data={displayedData} />
+      {startDate || endDate ? (
+        <DateRangeTable data={displayedData} />
+      ) : (
+        <Table data={displayedData} />
+      )}
       <div className="flex justify-between items-center mt-4">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

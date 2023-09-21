@@ -1,7 +1,7 @@
 import { CountryData, AggregatedData } from "../types";
 
 type SortOrder = "asc" | "desc";
-type SortableKeys = keyof CountryData | keyof AggregatedData;
+export type SortableKeys = keyof CountryData | keyof AggregatedData;
 
 export const sortData = (
   data: CountryData[],
